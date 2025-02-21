@@ -1,12 +1,32 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Main {
     public static void main(String[] args) {
+        selecionarCandidatos();
+    }
 
-        System.out.println("Processo Seletivo");
-        analisarCandidato(1900.0);
-        analisarCandidato(2200.0);
-        analisarCandidato(2000.0);
+    static void selecionarCandidatos(){
+        String[] candidatos = {"FELIPE","GLEYSON","JULIETA","ANTONY","MIRELLA","JULIANA","SAMIRA","EDUARDO"};
+
+        int candidatosSelecionados = 0;
+        int candidatoAtual = 0;
+        double salarioBase = 2000.0;
+        while(candidatosSelecionados < 5){
+            String candidato =  candidatos[candidatoAtual];
+            double salarioPretendido = gerarValor();
+
+            System.out.println("O candidato "+ candidato + " solicitou este valor de salario: "+salarioPretendido);
+            if (salarioBase >= salarioPretendido){
+                System.out.println("O candidato "+ candidato +" foi selecionado para a vaga");
+                candidatosSelecionados++;
+            }
+            candidatoAtual++;
+        }
+
+    }
+
+    static double gerarValor(){
+        return ThreadLocalRandom.current().nextDouble(1800, 2200);
     }
 
     static void analisarCandidato(double salarioPretendido){
